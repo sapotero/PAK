@@ -1,26 +1,19 @@
-import { render, version } from 'inferno';
-import Component from 'inferno-component';
+import { render } from 'inferno';
 import { Incrementer } from './components/Incrementer';
+import { App } from './components/Application';
 
-const container = document.getElementById('app');
+import { Router, Route, IndexRoute } from 'inferno-router';
+import createBrowserHistory from 'history/createBrowserHistory';
 
-class MyComponent extends Component<any, any> {
-	private tsxVersion: number;
+const browserHistory = createBrowserHistory();
 
-	constructor(props, context) {
-		super(props, context);
+const routes = (
+	<Router history={ browserHistory }>
+		<Route component={ App }>
+      <IndexRoute component={ Incrementer }/>
+      <Route path="*" component={ Incrementer }/>
+		</Route>
+	</Router>
+);
 
-		this.tsxVersion = 2.22; /* This is typed value */
-	}
-
-	public render() {
-		return (
-			<div>
-				<h1>{`Welcome to Inferno ${version} TSX ${this.tsxVersion}`}</h1>
-				<Incrementer name={'Crazy button'} />
-			</div>
-		);
-	}
-}
-
-render(<MyComponent />, container);
+render(routes, document.getElementById('app'));
