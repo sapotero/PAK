@@ -1,9 +1,26 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+import { render, version } from 'inferno';
+import Component from 'inferno-component';
+import { Incrementer } from './components/Incrementer';
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root') as HTMLElement
-);
+const container = document.getElementById('app');
+
+class MyComponent extends Component<any, any> {
+	private tsxVersion: number;
+
+	constructor(props, context) {
+		super(props, context);
+
+		this.tsxVersion = 2.22; /* This is typed value */
+	}
+
+	public render() {
+		return (
+			<div>
+				<h1>{`Welcome to Inferno ${version} TSX ${this.tsxVersion}`}</h1>
+				<Incrementer name={'Crazy button'} />
+			</div>
+		);
+	}
+}
+
+render(<MyComponent />, container);

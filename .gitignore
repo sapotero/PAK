@@ -1,4 +1,30 @@
-# See https://help.github.com/ignore-files/ for more about ignoring files.
+dist
+
+_site
+.alm
+.history
+.git
+build
+.build
+.git
+.history
+.idea
+.jshintrc
+.nyc_output
+.sass-cache
+.vscode
+build
+coverage
+jsconfig.json
+Gemfile.lock
+node_modules
+.DS_Store
+*.map
+*.log
+*.swp
+*~
+test/data/result.json
+
 
 # dependencies
 /node_modules
